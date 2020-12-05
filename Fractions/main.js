@@ -1,6 +1,6 @@
 let numeratorSlider, denominatorSlider, numeratorValue, denominatorValue, simplifiedNumeratorValue, simplifiedDenominatorValue, simplifiedWholeValue, simplifiedFraction, canvas, context;
 const numeratorMax = 40;
-const denominatorMax = 20;
+const denominatorMax = 40;
 
 
 function load() {

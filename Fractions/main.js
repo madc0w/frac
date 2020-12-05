@@ -30,6 +30,8 @@ function load() {
 }
 
 function update() {
+	canvas.width = canvas.width; // to clear canvas
+
 	const numerator = numeratorSlider.value;
 	const denominator = denominatorSlider.value;
 	numeratorValue.innerHTML = numerator;
@@ -51,7 +53,6 @@ function update() {
 		simplifiedFraction.style.visibility = 'hidden';
 	}
 
-	canvas.width = canvas.width;
 	const radius = 60 / (Math.sqrt(Math.ceil(numerator / denominator)));
 	const center = {
 		x: radius + innerWidth / 2 - (wholeValue * radius * 1.25),
@@ -60,16 +61,16 @@ function update() {
 	// console.log(center.x);
 	for (let j = 0; j < numerator / denominator; j++) {
 		const isLast = j == wholeValue;
-		context.fillStyle = isLast ? '#88f' : '#00f';
+		context.fillStyle = '#00f';
 		context.beginPath();
 		context.arc(center.x, center.y, radius, 0, 2 * Math.PI);
 		context.fill();
 
 		if (isLast) {
-			context.fillStyle = '#00f';
+			context.fillStyle = '#88f';
 			context.beginPath();
 			context.moveTo(center.x, center.y);
-			context.arc(center.x, center.y, radius, 0, (numerator % denominator) * 2 * Math.PI / denominator);
+			context.arc(center.x, center.y, radius, 0, (2 * Math.PI) - ((numerator % denominator) * 2 * Math.PI / denominator));
 			context.lineTo(center.x, center.y);
 			context.fill();
 		}

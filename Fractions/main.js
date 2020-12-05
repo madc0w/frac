@@ -67,10 +67,10 @@ function update() {
 		context.fill();
 
 		if (isLast) {
-			context.fillStyle = '#88f';
+			context.fillStyle = '#aaf';
 			context.beginPath();
 			context.moveTo(center.x, center.y);
-			context.arc(center.x, center.y, radius, 0, (2 * Math.PI) - ((numerator % denominator) * 2 * Math.PI / denominator));
+			context.arc(center.x, center.y, radius * 0.9, 0, 2 * Math.PI * (1 - numerator % denominator / denominator));
 			context.lineTo(center.x, center.y);
 			context.fill();
 		}

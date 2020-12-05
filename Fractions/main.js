@@ -1,4 +1,4 @@
-let numeratorSlider, denominatorSlider, numeratorValue, denominatorValue, canvas, context;
+let numeratorSlider, denominatorSlider, numeratorValue, denominatorValue, simplifiedNumeratorValue, simplifiedDenominatorValue, simplifiedWholeValue, simplifiedFraction, canvas, context;
 const numeratorMax = 40;
 const denominatorMax = 20;
 
@@ -8,9 +8,14 @@ function load() {
 	denominatorSlider = document.getElementById('denominator-slider');
 	numeratorValue = document.getElementById('numerator-value');
 	denominatorValue = document.getElementById('denominator-value');
+	simplifiedNumeratorValue = document.getElementById('simplified-numerator-value');
+	simplifiedDenominatorValue = document.getElementById('simplified-denominator-value');
+	simplifiedWholeValue = document.getElementById('simplified-whole-value');
+	simplifiedFraction = document.getElementById('simplified-fraction');
 	canvas = document.getElementById('canvas');
 	context = canvas.getContext('2d');
 
+	canvas.width = innerWidth;
 	numeratorSlider.min = 1;
 	numeratorSlider.max = numeratorMax;
 	denominatorSlider.min = 1;
@@ -30,20 +35,36 @@ function update() {
 	numeratorValue.innerHTML = numerator;
 	denominatorValue.innerHTML = denominator;
 
+	const wholeValue = Math.floor(numerator / denominator);
+	simplifiedWholeValue.innerHTML = wholeValue > 0 ? wholeValue : '';
+	if (numerator % denominator > 0) {
+		let maxFactor = 1;
+		for (let i = 2; i <= denominator / 2; i++) {
+			if (denominator % i == 0 && numerator % i == 0) {
+				maxFactor = i;
+			}
+		}
+		simplifiedNumeratorValue.innerHTML = (numerator % denominator) / maxFactor;
+		simplifiedDenominatorValue.innerHTML = denominator / maxFactor;
+		simplifiedFraction.style.visibility = '';
+	} else {
+		simplifiedFraction.style.visibility = 'hidden';
+	}
+
 	canvas.width = canvas.width;
 	const radius = 60 / (Math.sqrt(Math.ceil(numerator / denominator)));
 	const center = {
-		x: 100,
+		x: innerWidth / 2 - radius - (Math.max(1, wholeValue) * radius * 1.25),
 		y: 100
 	};
+	console.log(center.x);
 	for (let j = 0; j < numerator / denominator; j++) {
-		const isLast = j == Math.floor(numerator / denominator);
+		const isLast = j == wholeValue;
 		context.fillStyle = isLast ? '#88f' : '#00f';
 		context.beginPath();
 		context.arc(center.x, center.y, radius, 0, 2 * Math.PI);
 		context.fill();
 
-		console.log(j, isLast);
 		if (isLast) {
 			context.fillStyle = '#00f';
 			context.beginPath();
@@ -66,6 +87,6 @@ function update() {
 				context.stroke();
 			}
 		}
-		center.x += radius * 3;
+		center.x += radius * 2.5;
 	}
 }

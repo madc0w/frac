@@ -13,12 +13,35 @@
 			body {
 				font-family: Lato;
 				background-color: #bbc;
+				padding: 18px;
+			}
+
+			#fraction {
+				margin-left: calc(50vw - 220px);
+				background-color: #fff;
+				padding: 8px;
+				border-radius: 4px;
+				width: 510px;
 			}
 
 			#fraction-bar {
 				height: 4px;
 				width: 44px;
 				background-color: #000;
+			}
+
+			#simplified-whole-value {
+				font-size: 100px;
+			}
+
+			#simplified-fraction,
+			#simplified-whole-value {
+				display: inline-block;
+			}
+
+			#simplified-fraction-container {
+				margin-left: calc(50vw + 20px);
+				margin-top: 12px;
 			}
 
 			.fraction-value {
@@ -35,8 +58,18 @@
 			}
 
 			.fraction-value-slider div {
-				display: inline;
-				vertical-align: top;
+				display: inline-block;
+				/* vertical-align: top; */
+				font-size: 12px;
+			}
+
+			input {
+				width: 400px;
+			}
+
+			#canvas {
+				position: absolute;
+				top: 200px;
 			}
 
 		</style>
@@ -60,8 +93,20 @@
 				</div>
 			</div>
 		</div>
+		<div id="simplified-fraction-container">
+			<div id="simplified-whole-value"></div>
+			<div id="simplified-fraction">
+				<div class="fraction-value-container">
+					<div class="fraction-value" id="simplified-numerator-value"></div>
+				</div>
+				<div id="fraction-bar"></div>
+				<div class="fraction-value-container">
+					<div class="fraction-value" id="simplified-denominator-value"></div>
+				</div>
+			</div>
+		</div>
 		<div id="canvas-container">
-			<canvas id="canvas" width="600" height="600" />
+			<canvas id="canvas" height="600" />
 		</div>
 
 	</body>

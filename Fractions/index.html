@@ -1,4 +1,69 @@
 <html>
 
+	<head>
+		<title>Frac</title>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<!-- <meta name="viewport" content="width=device-width, user-scalable=no" /> -->
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet" />
+
+		<script type="text/javascript" src="main.js"></script>
+
+		<style>
+			body {
+				font-family: Lato;
+				background-color: #bbc;
+			}
+
+			#fraction-bar {
+				height: 4px;
+				width: 44px;
+				background-color: #000;
+			}
+
+			.fraction-value {
+				display: inline-block;
+				width: 40px;
+				margin-left: 4px;
+				font-size: 36px;
+				text-align: center;
+			}
+
+			.fraction-value-slider {
+				display: inline;
+				margin-left: 22px;
+			}
+
+			.fraction-value-slider div {
+				display: inline;
+				vertical-align: top;
+			}
+
+		</style>
+	</head>
+
+	<body onLoad="load()">
+		<div id="fraction">
+			<div class="fraction-value-container" id="numerator-container">
+				<div class="fraction-value" id="numerator-value"></div>
+				<div class="fraction-value-slider" id="numerator-slider-container">
+					<div>1</div> <input id="numerator-slider" onInput="update()" type="range" />
+					<div id="numerator-max-value"></div>
+				</div>
+			</div>
+			<div id="fraction-bar"></div>
+			<div class="fraction-value-container" id="denominator-container">
+				<div class="fraction-value" id="denominator-value"></div>
+				<div class="fraction-value-slider" id="denominator-slider-container">
+					<div>1</div> <input id="denominator-slider" onInput="update()" type="range" />
+					<div id="denominator-max-value"></div>
+				</div>
+			</div>
+		</div>
+		<div id="canvas-container">
+			<canvas id="canvas" width="600" height="600" />
+		</div>
+
+	</body>
 
 </html>

@@ -36,7 +36,7 @@ function update() {
 	denominatorValue.innerHTML = denominator;
 
 	const wholeValue = Math.floor(numerator / denominator);
-	simplifiedWholeValue.innerHTML = wholeValue > 0 ? wholeValue : '';
+	simplifiedWholeValue.innerHTML = wholeValue > 0 ? wholeValue : '&nbsp;';
 	if (numerator % denominator > 0) {
 		let maxFactor = 1;
 		for (let i = 2; i <= denominator / 2; i++) {
@@ -54,10 +54,10 @@ function update() {
 	canvas.width = canvas.width;
 	const radius = 60 / (Math.sqrt(Math.ceil(numerator / denominator)));
 	const center = {
-		x: innerWidth / 2 - radius - (Math.max(1, wholeValue) * radius * 1.25),
+		x: radius + innerWidth / 2 - (wholeValue * radius * 1.25),
 		y: 100
 	};
-	console.log(center.x);
+	// console.log(center.x);
 	for (let j = 0; j < numerator / denominator; j++) {
 		const isLast = j == wholeValue;
 		context.fillStyle = isLast ? '#88f' : '#00f';

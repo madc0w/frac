@@ -53,10 +53,10 @@ function update() {
 		simplifiedFraction.style.visibility = 'hidden';
 	}
 
-	const radius = 60 / (Math.sqrt(Math.ceil(numerator / denominator)));
+	const radius = 120 / (Math.sqrt(Math.ceil(numerator / denominator)));
 	const center = {
 		x: radius + innerWidth / 2 - (wholeValue * radius * 1.25),
-		y: 100
+		y: radius + 20
 	};
 	// console.log(center.x);
 	for (let j = 0; j < numerator / denominator; j++) {
